@@ -1,5 +1,26 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kpaya",
+    "section": "",
+    "text": "Hello!"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Kpaya",
+    "section": "Education",
+    "text": "Education\nUCSB"
+  },
+  {
+    "objectID": "index.html#professional-experience",
+    "href": "index.html#professional-experience",
+    "title": "Kpaya",
+    "section": "Professional Experience",
+    "text": "Professional Experience"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
