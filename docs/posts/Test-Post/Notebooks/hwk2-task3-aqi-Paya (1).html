@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Task 3: Visualizing AQI during the 2017 Thomas Fire in Santa Barbara County – Kpaya</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Kpaya</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Task 3: Visualizing AQI during the 2017 Thomas Fire in Santa Barbara County</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the data</a></li>
+  <li><a href="#complete-workflow" id="toc-complete-workflow" class="nav-link" data-scroll-target="#complete-workflow">COMPLETE WORKFLOW</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">1</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">3</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">4</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">6</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">7</a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">8</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">9</a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">10</a></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10">10</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<div id="cell-1" class="cell" data-editable="false">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Otter</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> otter</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>grader <span class="op">=</span> otter.Notebook(<span class="st">"hwk2-task3-aqi.ipynb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<ul>
+<li>First, update the following cell to have a link to <em>your</em> Homework 2 GitHub repository:</li>
+</ul>
+<p><strong>UPDATE THIS LINK</strong> https://github.com/kpaya/eds220-hwk2</p>
+<ul>
+<li><p>Review the <a href="https://docs.google.com/document/d/1x0BoU6IH4cnOR1-n7i9CYQ9wUC37yDpYlQ4j6rCfcsU/edit?tab=t.0">complete rubric for this task</a> before starting.</p></li>
+<li><p><strong>Meaningful commits should be made every time you finish a major step.</strong> We’ll check your repository and view the commit history.</p></li>
+<li><p><strong>Every code cell should have a comment.</strong> Err on the side of commenting too much for now. Comments should follow best practices.</p></li>
+<li><p><strong>Do not update the top cell with the <code>otter</code> import</strong>, this is used internally for grading.</p></li>
+</ul>
+</section>
+<section id="about-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-data">About the data</h2>
+<p>In this task you will use <a href="https://www.airnow.gov/aqi/aqi-basics/">Air Quality Index (AQI)</a> data from the <a href="https://www.epa.gov">US Environmental Protection Agency</a> to visualize the impact on the AQI of the 2017 <a href="https://en.wikipedia.org/wiki/Thomas_Fire">Thomas Fire</a> in Santa Barbara County.</p>
+<p>Data Retrieved: Oct.&nbsp;22, 2024</p>
+</section>
+<section id="complete-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="complete-workflow">COMPLETE WORKFLOW</h2>
+<p>You will use the next code cell to complete the last exercise in the task. Leave it blank for now.</p>
+<div id="cell-4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>aqi_17 <span class="op">=</span> pd.read_csv(<span class="st">'https://aqs.epa.gov/aqsweb/airdata/daily_aqi_by_county_2017.zip'</span>,compression<span class="op">=</span><span class="st">'zip'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>aqi_18 <span class="op">=</span> pd.read_csv(<span class="st">'https://aqs.epa.gov/aqsweb/airdata/daily_aqi_by_county_2018.zip'</span>,compression<span class="op">=</span><span class="st">'zip'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Data cleaning</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate DataFrames aqi_17 and aqi_18 along the default axis</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>aqi <span class="op">=</span> pd.concat([aqi_17, aqi_18])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial column names: notice caps and spaces (difficult to work with!)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi.columns, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplify column names</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>aqi.columns <span class="op">=</span> (aqi.columns</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                  .<span class="bu">str</span>.lower()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                  .<span class="bu">str</span>.replace(<span class="st">' '</span>,<span class="st">'_'</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi.columns, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Wrangling</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to include only the rows where the county name is 'Santa Barbara'</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> aqi[aqi[<span class="st">'county_name'</span>] <span class="op">==</span> <span class="st">'Santa Barbara'</span>]</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop unnecessary columns('state_name', 'county_name', 'state_code', and 'county_code')</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> aqi_sb.drop([<span class="st">'state_name'</span>, <span class="st">'county_name'</span>, <span class="st">'state_code'</span>, <span class="st">'county_code'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'date' column in the aqi_sb DataFrame to datetime format</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>aqi_sb.date <span class="op">=</span> pd.to_datetime(aqi_sb[<span class="st">'date'</span>])</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the 'date' column as the index</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> aqi_sb.set_index(<span class="st">'date'</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate AQI rolling average over 5 days</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>aqi_sb[<span class="st">'five_day_average'</span>] <span class="op">=</span> aqi_sb[<span class="st">'aqi'</span>].rolling(<span class="st">'5D'</span>).mean()</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Data plotting</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the daily AQI</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>plt.plot(aqi_sb.index, aqi_sb[<span class="st">'aqi'</span>], label<span class="op">=</span><span class="st">'Daily AQI'</span>, color<span class="op">=</span><span class="st">'skyblue'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the 5-day average AQI</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.plot(aqi_sb.index, aqi_sb[<span class="st">'five_day_average'</span>], label<span class="op">=</span><span class="st">'5-Day Average AQI'</span>, color<span class="op">=</span><span class="st">'orange'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Add titles, labels and legend</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Daily AQI Vs. 5-Day Average AQI'</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Air Quality Index (AQI)'</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate x-labels at a 45 angle in order to fit in graph</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['State Name', 'county Name', 'State Code', 'County Code', 'Date', 'AQI',
+       'Category', 'Defining Parameter', 'Defining Site',
+       'Number of Sites Reporting'],
+      dtype='object') 
+
+Index(['state_name', 'county_name', 'state_code', 'county_code', 'date', 'aqi',
+       'category', 'defining_parameter', 'defining_site',
+       'number_of_sites_reporting'],
+      dtype='object') 
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>(array([17167., 17257., 17348., 17440., 17532., 17622., 17713., 17805.,
+        17897.]),
+ [Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, '')])</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hwk2-task3-aqi-Paya (1)_files/figure-html/cell-3-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">1</h2>
+<ol type="a">
+<li><p>Read the <a href="https://www.airnow.gov/aqi/aqi-basics/">Air Quality Index (AQI) Basics</a> from the AirNow.gov portal.</p></li>
+<li><p>Go to <a href="https://www.epa.gov/outdoor-air-quality-data">EPA’s website on Air Quality Data Collected at Outdoor Monitors Across the US</a>.</p></li>
+<li><p>Under “Donwload Data”, click on “Pre-generated Data Files”.</p></li>
+<li><p>Read the “About the data” section.</p></li>
+</ol>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">2</h2>
+<ol type="a">
+<li><p>Back in the “Pre-generated Data Files” site, click on “Tables of Daily AQI”.</p></li>
+<li><p>Copy the URL to the 2017 Daily AQI <strong>by County</strong> ZIP file <code>daily_aqi_by_county_2017.zip</code></p></li>
+</ol>
+<p>Notice we’ll be reding the data directly from its ZIP file link. This ZIP file contains a single CSV that has been compressed to save space.</p>
+<!-- BEGIN QUESTION -->
+<ol start="3" type="a">
+<li><p>In the next code cell read in the data from the URL using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code>pd.read_csv</code></a> function with the <code>compression='zip'</code> parameter added and store it as <code>aqi_17</code>.</p></li>
+<li><p>In the same cell, read in the data for the 2018 Daily AQI by County ZIP file and store it as <code>aqi_18</code>.</p></li>
+</ol>
+<div id="cell-11" class="cell" data-tags="[]" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import libraries</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-12" class="cell" data-tags="[]" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>aqi_17 <span class="op">=</span> pd.read_csv(<span class="st">'https://aqs.epa.gov/aqsweb/airdata/daily_aqi_by_county_2017.zip'</span>,compression<span class="op">=</span><span class="st">'zip'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>aqi_18 <span class="op">=</span> pd.read_csv(<span class="st">'https://aqs.epa.gov/aqsweb/airdata/daily_aqi_by_county_2018.zip'</span>,compression<span class="op">=</span><span class="st">'zip'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- END QUESTION -->
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">3</h2>
+<ol type="a">
+<li>and b. Use the next two code cells to look at the head of both data frames. Store your results in <code>aqi_17_head</code> and <code>aqi_18_head</code>.</li>
+</ol>
+<div id="cell-14" class="cell" data-tags="[]" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a. </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign to aqi_17_head the results of .head() to view whole dataset aqi_17</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>aqi_17_head <span class="op">=</span> aqi_17.head()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>aqi_17_head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">State Name</th>
+<th data-quarto-table-cell-role="th">county Name</th>
+<th data-quarto-table-cell-role="th">State Code</th>
+<th data-quarto-table-cell-role="th">County Code</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">AQI</th>
+<th data-quarto-table-cell-role="th">Category</th>
+<th data-quarto-table-cell-role="th">Defining Parameter</th>
+<th data-quarto-table-cell-role="th">Defining Site</th>
+<th data-quarto-table-cell-role="th">Number of Sites Reporting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2017-01-01</td>
+<td>28</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2017-01-04</td>
+<td>29</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2017-01-10</td>
+<td>25</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2017-01-13</td>
+<td>40</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2017-01-16</td>
+<td>22</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-15" class="cell" data-scrolled="true" data-tags="[]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign to aqi_18_head the results of .head() to view whole dataset aqi_18</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>aqi_18_head <span class="op">=</span> aqi_18.head()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>aqi_18_head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">State Name</th>
+<th data-quarto-table-cell-role="th">county Name</th>
+<th data-quarto-table-cell-role="th">State Code</th>
+<th data-quarto-table-cell-role="th">County Code</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">AQI</th>
+<th data-quarto-table-cell-role="th">Category</th>
+<th data-quarto-table-cell-role="th">Defining Parameter</th>
+<th data-quarto-table-cell-role="th">Defining Site</th>
+<th data-quarto-table-cell-role="th">Number of Sites Reporting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2018-01-02</td>
+<td>42</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2018-01-05</td>
+<td>45</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2018-01-08</td>
+<td>20</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2018-01-11</td>
+<td>25</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Alabama</td>
+<td>Baldwin</td>
+<td>1</td>
+<td>3</td>
+<td>2018-01-14</td>
+<td>33</td>
+<td>Good</td>
+<td>PM2.5</td>
+<td>01-003-0010</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<!-- BEGIN QUESTION -->
+<ol start="3" type="a">
+<li>Use this code cell to make some other preliminary data exploration of your choosing.</li>
+</ol>
+<div id="cell-17" class="cell" data-tags="[]" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preliminary data exploration for aqi_17</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#First Step:</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Use .head() to get more information on the first 10 rows of the dataframe</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>,<span class="va">None</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi_17.head(n<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Step:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of rows, columns and NaN</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of rows for aqi_17: "</span>, aqi_17.shape[<span class="dv">0</span>])</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of columns for aqi_17: "</span>,aqi_17.shape[<span class="dv">1</span>])</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the number of NaN</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of NaNs in aqi_17 columns: "</span>, aqi_17.isnull().<span class="bu">sum</span>())</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Third Step:</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Check data type of each column</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data Types: "</span>, aqi_17.dtypes)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourth Step:</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Display statistical summary</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>aqi_17.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  State Name county Name  State Code  County Code        Date  AQI Category  \
+0    Alabama     Baldwin           1            3  2017-01-01   28     Good   
+1    Alabama     Baldwin           1            3  2017-01-04   29     Good   
+2    Alabama     Baldwin           1            3  2017-01-10   25     Good   
+3    Alabama     Baldwin           1            3  2017-01-13   40     Good   
+4    Alabama     Baldwin           1            3  2017-01-16   22     Good   
+5    Alabama     Baldwin           1            3  2017-01-19   26     Good   
+6    Alabama     Baldwin           1            3  2017-01-22   39     Good   
+7    Alabama     Baldwin           1            3  2017-01-25   23     Good   
+8    Alabama     Baldwin           1            3  2017-01-28   32     Good   
+9    Alabama     Baldwin           1            3  2017-01-31   19     Good   
+
+  Defining Parameter Defining Site  Number of Sites Reporting  
+0              PM2.5   01-003-0010                          1  
+1              PM2.5   01-003-0010                          1  
+2              PM2.5   01-003-0010                          1  
+3              PM2.5   01-003-0010                          1  
+4              PM2.5   01-003-0010                          1  
+5              PM2.5   01-003-0010                          1  
+6              PM2.5   01-003-0010                          1  
+7              PM2.5   01-003-0010                          1  
+8              PM2.5   01-003-0010                          1  
+9              PM2.5   01-003-0010                          1  
+Number of rows for aqi_17:  326801
+Number of columns for aqi_17:  10
+Number of NaNs in aqi_17 columns:  State Name                   0
+county Name                  0
+State Code                   0
+County Code                  0
+Date                         0
+AQI                          0
+Category                     0
+Defining Parameter           0
+Defining Site                0
+Number of Sites Reporting    0
+dtype: int64
+Data Types:  State Name                   object
+county Name                  object
+State Code                    int64
+County Code                   int64
+Date                         object
+AQI                           int64
+Category                     object
+Defining Parameter           object
+Defining Site                object
+Number of Sites Reporting     int64
+dtype: object</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">State Code</th>
+<th data-quarto-table-cell-role="th">County Code</th>
+<th data-quarto-table-cell-role="th">AQI</th>
+<th data-quarto-table-cell-role="th">Number of Sites Reporting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>326801.000000</td>
+<td>326801.000000</td>
+<td>326801.000000</td>
+<td>326801.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>30.116484</td>
+<td>79.492147</td>
+<td>43.342609</td>
+<td>2.024602</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>16.136776</td>
+<td>89.537959</td>
+<td>23.339487</td>
+<td>2.460567</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>17.000000</td>
+<td>23.000000</td>
+<td>32.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>30.000000</td>
+<td>59.000000</td>
+<td>42.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>42.000000</td>
+<td>105.000000</td>
+<td>52.000000</td>
+<td>2.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>80.000000</td>
+<td>840.000000</td>
+<td>3767.000000</td>
+<td>36.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-18" class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preliminary data exploration for aqi_17</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#First Step:</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Use .head() to get more information on the first 10 rows of the dataframe</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>,<span class="va">None</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi_18.head(n<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Second Step:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of rows, columns and NaN</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of rows for aqi_18: "</span>, aqi_18.shape[<span class="dv">0</span>])</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of columns for aqi_18: "</span>,aqi_18.shape[<span class="dv">1</span>])</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the number of NaN</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of NaNs in aqi_18 columns:: "</span>, aqi_18.isnull().<span class="bu">sum</span>())</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Third Step:</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Check data type of each column</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data Types: "</span>, aqi_18.dtypes)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourth Step:</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display statistical summary</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>aqi_18.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  State Name county Name  State Code  County Code        Date  AQI  Category  \
+0    Alabama     Baldwin           1            3  2018-01-02   42      Good   
+1    Alabama     Baldwin           1            3  2018-01-05   45      Good   
+2    Alabama     Baldwin           1            3  2018-01-08   20      Good   
+3    Alabama     Baldwin           1            3  2018-01-11   25      Good   
+4    Alabama     Baldwin           1            3  2018-01-14   33      Good   
+5    Alabama     Baldwin           1            3  2018-01-17   31      Good   
+6    Alabama     Baldwin           1            3  2018-01-20   55  Moderate   
+7    Alabama     Baldwin           1            3  2018-01-23   18      Good   
+8    Alabama     Baldwin           1            3  2018-01-26   53  Moderate   
+9    Alabama     Baldwin           1            3  2018-01-29   20      Good   
+
+  Defining Parameter Defining Site  Number of Sites Reporting  
+0              PM2.5   01-003-0010                          1  
+1              PM2.5   01-003-0010                          1  
+2              PM2.5   01-003-0010                          1  
+3              PM2.5   01-003-0010                          1  
+4              PM2.5   01-003-0010                          1  
+5              PM2.5   01-003-0010                          1  
+6              PM2.5   01-003-0010                          1  
+7              PM2.5   01-003-0010                          1  
+8              PM2.5   01-003-0010                          1  
+9              PM2.5   01-003-0010                          1  
+Number of rows for aqi_18:  327541
+Number of columns for aqi_18:  10
+Number of NaNs in aqi_18 columns::  State Name                   0
+county Name                  0
+State Code                   0
+County Code                  0
+Date                         0
+AQI                          0
+Category                     0
+Defining Parameter           0
+Defining Site                0
+Number of Sites Reporting    0
+dtype: int64
+Data Types:  State Name                   object
+county Name                  object
+State Code                    int64
+County Code                   int64
+Date                         object
+AQI                           int64
+Category                     object
+Defining Parameter           object
+Defining Site                object
+Number of Sites Reporting     int64
+dtype: object</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">State Code</th>
+<th data-quarto-table-cell-role="th">County Code</th>
+<th data-quarto-table-cell-role="th">AQI</th>
+<th data-quarto-table-cell-role="th">Number of Sites Reporting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>327541.000000</td>
+<td>327541.000000</td>
+<td>327541.000000</td>
+<td>327541.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>30.045558</td>
+<td>79.304511</td>
+<td>43.126421</td>
+<td>2.018825</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>16.175659</td>
+<td>88.403819</td>
+<td>20.760634</td>
+<td>2.462494</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>17.000000</td>
+<td>23.000000</td>
+<td>31.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>30.000000</td>
+<td>59.000000</td>
+<td>41.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>42.000000</td>
+<td>105.000000</td>
+<td>52.000000</td>
+<td>2.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>80.000000</td>
+<td>840.000000</td>
+<td>1051.000000</td>
+<td>36.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<!-- BEGIN QUESTION -->
+<ol start="4" type="a">
+<li>Use this markdown cell to explain why you decided to do the exploration in c.&nbsp;and what information you obtained from doing it.</li>
+</ol>
+<p>The first step in our data exploration was to visualize the dataset by setting the option pd.set_option(“display.max_columns”, None) to ensure all columns are displayed. Then I printed the first 10 rows using .head() to get a snapshot of the data.</p>
+<p>Next, we assessed the size of the dataset by calculating the number of rows and columns. This provides a sense of the dataset’s scale. Calculating the NaN, is important for understanding the extent of missing data which can guide further cleaning steps.</p>
+<p>In the third step, we examined the data types of each column to ensure they are appropriate for the data they contain. If any columns had incorrect data types, adjustments would need to be made accordingly.</p>
+<p>The last step was to generate summary statistics for numerical columns, which provides insights into the distribution, mean, and standard deviation.</p>
+<!-- END QUESTION -->
+<!-- BEGIN QUESTION -->
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">4</h2>
+<p>We currently have two separate data frames. For this exercise we will need to “glue” them one on top of the other. The <code>pandas</code> function <code>pd.concat()</code> can achieve this.</p>
+<p>Pass <code>[aqi_17, aqi_18]</code> as the input of <code>pd.concat()</code> and store the output as <code>aqi</code>.<br>
+In the next line run <code>aqi</code>.</p>
+<p>NOTE: When we concatenate data frames like this, without any extra parameters for <code>pd.concat()</code> the indices for the two dataframes are just “glued together”, the index of the resulting dataframe is not updated to start from 0. Notice the mismatch between the index of <code>aqi</code> and the number of rows i the complete data frame.</p>
+<div id="cell-23" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate DataFrames aqi_17 and aqi_18 along the default axis</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>aqi <span class="op">=</span> pd.concat([aqi_17, aqi_18])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       State Name county Name  State Code  County Code        Date  AQI  \
+0         Alabama     Baldwin           1            3  2017-01-01   28   
+1         Alabama     Baldwin           1            3  2017-01-04   29   
+2         Alabama     Baldwin           1            3  2017-01-10   25   
+3         Alabama     Baldwin           1            3  2017-01-13   40   
+4         Alabama     Baldwin           1            3  2017-01-16   22   
+...           ...         ...         ...          ...         ...  ...   
+327536    Wyoming      Weston          56           45  2018-12-27   36   
+327537    Wyoming      Weston          56           45  2018-12-28   35   
+327538    Wyoming      Weston          56           45  2018-12-29   35   
+327539    Wyoming      Weston          56           45  2018-12-30   31   
+327540    Wyoming      Weston          56           45  2018-12-31   35   
+
+       Category Defining Parameter Defining Site  Number of Sites Reporting  
+0          Good              PM2.5   01-003-0010                          1  
+1          Good              PM2.5   01-003-0010                          1  
+2          Good              PM2.5   01-003-0010                          1  
+3          Good              PM2.5   01-003-0010                          1  
+4          Good              PM2.5   01-003-0010                          1  
+...         ...                ...           ...                        ...  
+327536     Good              Ozone   56-045-0003                          1  
+327537     Good              Ozone   56-045-0003                          1  
+327538     Good              Ozone   56-045-0003                          1  
+327539     Good              Ozone   56-045-0003                          1  
+327540     Good              Ozone   56-045-0003                          1  
+
+[654342 rows x 10 columns]</code></pre>
+</div>
+</div>
+<!-- END QUESTION -->
+<!-- BEGIN QUESTION -->
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">5</h2>
+<p>Run the following code cell and use the next markdown cell to give a line by line explanation of the code below the comment “#Simplify column names”. You might need to look up the <code>pandas</code> documentation.</p>
+<div id="cell-25" class="cell" data-editable="false" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial column names: notice caps and spaces (difficult to work with!)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi.columns, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplify column names</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>aqi.columns <span class="op">=</span> (aqi.columns</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                  .<span class="bu">str</span>.lower()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                  .<span class="bu">str</span>.replace(<span class="st">' '</span>,<span class="st">'_'</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi.columns, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['State Name', 'county Name', 'State Code', 'County Code', 'Date', 'AQI',
+       'Category', 'Defining Parameter', 'Defining Site',
+       'Number of Sites Reporting'],
+      dtype='object') 
+
+Index(['state_name', 'county_name', 'state_code', 'county_code', 'date', 'aqi',
+       'category', 'defining_parameter', 'defining_site',
+       'number_of_sites_reporting'],
+      dtype='object') 
+</code></pre>
+</div>
+</div>
+<ol type="1">
+<li><p><code>print(aqi.columns, '\n')</code>: This line prints the column names of <code>aqi</code>, the <code>\n</code> creates a new line for better readability</p></li>
+<li><ol type="a">
+<li><code>aqi.columns = (aqi.columns.str.lower()</code>: assigning new values to the column names</li>
+</ol></li>
+</ol>
+<p>b)<code>.str</code>: This function converts all column names to lowercase. The str allows to apply it to each element in the index</p>
+<p>c)<code>.replace(' ','_'))</code> : This function replaces spaces with underscores ’_’</p>
+<ol start="3" type="1">
+<li><code>print(aqi.columns, '\n')</code>: double checking the work - prints out the updated column names in <code>aqi</code></li>
+</ol>
+<!-- END QUESTION -->
+<!-- BEGIN QUESTION -->
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5">6</h2>
+<p>In the next code cell:</p>
+<ol type="a">
+<li><p>Select only data from <code>Santa Barbara</code> county and store it in a new variable <code>aqi_sb</code>.</p></li>
+<li><p>Remove the <code>state_name</code>, <code>county_name</code>, <code>state_code</code> and <code>county_code</code> columns from <code>aqi_sb</code>.</p></li>
+</ol>
+<p>Your dataframe should have the following columns in this order: <code>date</code>, <code>aqi</code>, <code>category</code>, <code>defining_parameter</code>, <code>defining_stie</code>, <code>number_of_sites_reporting</code>.</p>
+<div id="cell-28" class="cell" data-tags="[]" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to include only the rows where the county name is 'Santa Barbara'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> aqi[aqi[<span class="st">'county_name'</span>] <span class="op">==</span> <span class="st">'Santa Barbara'</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop unnecessary columns('state_name', 'county_name', 'state_code', and 'county_code')</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> aqi_sb.drop([<span class="st">'state_name'</span>, <span class="st">'county_name'</span>, <span class="st">'state_code'</span>, <span class="st">'county_code'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi_sb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             date  aqi  category defining_parameter defining_site  \
+28648  2017-01-01   39      Good              Ozone   06-083-4003   
+28649  2017-01-02   39      Good              PM2.5   06-083-2011   
+28650  2017-01-03   71  Moderate               PM10   06-083-4003   
+28651  2017-01-04   34      Good              Ozone   06-083-4003   
+28652  2017-01-05   37      Good              Ozone   06-083-4003   
+...           ...  ...       ...                ...           ...   
+29128  2018-12-27   37      Good              Ozone   06-083-1025   
+29129  2018-12-28   39      Good              Ozone   06-083-1021   
+29130  2018-12-29   39      Good              Ozone   06-083-1021   
+29131  2018-12-30   41      Good              PM2.5   06-083-1008   
+29132  2018-12-31   38      Good              Ozone   06-083-2004   
+
+       number_of_sites_reporting  
+28648                         12  
+28649                         11  
+28650                         12  
+28651                         13  
+28652                         12  
+...                          ...  
+29128                         11  
+29129                         12  
+29130                         12  
+29131                         12  
+29132                         12  
+
+[730 rows x 6 columns]</code></pre>
+</div>
+</div>
+<!-- END QUESTION -->
+<ol start="3" type="a">
+<li>What is the data type of the <code>date</code> column? Store your answer in the <code>date_type</code> variable. Your answer should contain the type for the <strong>date column only</strong>.</li>
+</ol>
+<div id="cell-30" class="cell" data-tags="[]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign to date_type the data type of the 'date' column</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>date_type <span class="op">=</span> aqi_sb[<span class="st">'date'</span>].dtype</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>date_type</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>dtype('O')</code></pre>
+</div>
+</div>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6">7</h2>
+<p>In the following cell: 1. Update the date column of <code>aqi_sb</code> to be a <code>pandas.datetime</code> object. 2. Update the index of <code>aqi_sb</code> to be the <code>date</code> column.</p>
+<!-- END QUESTION -->
+</section>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7">8</h2>
+<p>In the next cell we will calculate an average over a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.rolling.html">rolling window</a> using the <code>rolling()</code>method for <code>pandas.Series</code>:</p>
+<ul>
+<li><code>rolling()</code> is a lazy method, so we need to specify what we want to calculate over each window before it does something.</li>
+<li>in this example we use the aggregator function <code>mean()</code> to calculate the average over each window</li>
+<li>the parameter ‘5D’ indicates we want the window for our rolling average to be 5 days.</li>
+<li>we get a <code>pandas.Series</code> as ouput</li>
+</ul>
+<p>Store your answer in the <code>rolling_average</code> variable. You should have two columns in your series, <code>date</code> and the averages.</p>
+<div id="cell-34" class="cell" data-tags="[]" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate AQI rolling average over 5 days</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>rolling_average <span class="op">=</span> aqi_sb[<span class="st">'aqi'</span>].rolling(<span class="st">'5D'</span>).mean()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rolling_average)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>date
+2017-01-01    39.000000
+2017-01-02    39.000000
+2017-01-03    49.666667
+2017-01-04    45.750000
+2017-01-05    44.000000
+                ...    
+2018-12-27    41.200000
+2018-12-28    38.600000
+2018-12-29    38.200000
+2018-12-30    38.200000
+2018-12-31    38.800000
+Name: aqi, Length: 730, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8">9</h2>
+<p>Without creating any new variables, add the mean of the AQI over a 5-day rolling window as a new column named <code>five_day_average</code> to the <code>aqi_sb</code> dataframe.</p>
+<div id="cell-36" class="cell" data-tags="[]" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the caculated AQI rolling average over 5 days to a new column named 'five_day_average'</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>aqi_sb[<span class="st">'five_day_average'</span>]<span class="op">=</span>rolling_average</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View results</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(aqi_sb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            aqi  category defining_parameter defining_site  \
+date                                                         
+2017-01-01   39      Good              Ozone   06-083-4003   
+2017-01-02   39      Good              PM2.5   06-083-2011   
+2017-01-03   71  Moderate               PM10   06-083-4003   
+2017-01-04   34      Good              Ozone   06-083-4003   
+2017-01-05   37      Good              Ozone   06-083-4003   
+...         ...       ...                ...           ...   
+2018-12-27   37      Good              Ozone   06-083-1025   
+2018-12-28   39      Good              Ozone   06-083-1021   
+2018-12-29   39      Good              Ozone   06-083-1021   
+2018-12-30   41      Good              PM2.5   06-083-1008   
+2018-12-31   38      Good              Ozone   06-083-2004   
+
+            number_of_sites_reporting  five_day_average  
+date                                                     
+2017-01-01                         12         39.000000  
+2017-01-02                         11         39.000000  
+2017-01-03                         12         49.666667  
+2017-01-04                         13         45.750000  
+2017-01-05                         12         44.000000  
+...                               ...               ...  
+2018-12-27                         11         41.200000  
+2018-12-28                         12         38.600000  
+2018-12-29                         12         38.200000  
+2018-12-30                         12         38.200000  
+2018-12-31                         12         38.800000  
+
+[730 rows x 6 columns]</code></pre>
+</div>
+</div>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9">10</h2>
+<p>Make a line plot showing both the daily AQI and the 5-day average (5-day average on top of the AQI). Make necessary updates for the plot to be accurate, informative, and polished, even if simple. You’re welcome to use plotting methods and packages beyond what we have covered in class!</p>
+<p>Can you see the AQI going up during the Thomas Fire in December 2017?</p>
+<div id="cell-38" class="cell" data-tags="[]" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the daily AQI</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.plot(aqi_sb.index, aqi_sb[<span class="st">'aqi'</span>], label<span class="op">=</span><span class="st">'Daily AQI'</span>, color<span class="op">=</span><span class="st">'skyblue'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the 5-day average AQI</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.plot(aqi_sb.index, aqi_sb[<span class="st">'five_day_average'</span>], label<span class="op">=</span><span class="st">'5-Day Average AQI'</span>, color<span class="op">=</span><span class="st">'orange'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add titles, labels and legend</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Daily AQI Vs. 5-Day Average AQI'</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Air Quality Index (AQI)'</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate x-labels at a 45 angle in order to fit in graph</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>(array([17167., 17257., 17348., 17440., 17532., 17622., 17713., 17805.,
+        17897.]),
+ [Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, ''),
+  Text(0, 0, '')])</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hwk2-task3-aqi-Paya (1)_files/figure-html/cell-18-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>#Can you see the AQI going up during the Thomas Fire in December 2017?</p>
+<p>The ‘Daily AQI Vs. 5-Day Average AQI’ plot demonstrates the air quality from 2017-2018. It is clear that the Thomas Fire event had a major impact on the AQI, we can observe a major spike on the graph, indicating deteriorated air quality due to increased particulate matter in the air.</p>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10">10</h2>
+<p>Collect all the relevant code into the first blank cell of the notebook titled “COMPLETE WORKFLOW”. This single cell will have the end-to-end workflow: from importing libraries and loading the data, to producing the graph. The <em>only</em> ouput of this cell should be the graph you produced in the previous exercise. Further guidance on what to include in this final workflow is in the <a href="https://docs.google.com/document/d/1x0BoU6IH4cnOR1-n7i9CYQ9wUC37yDpYlQ4j6rCfcsU/edit?tab=t.0">assignment rubric</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -6,7 +6,7 @@ about:
   image-shape: round
   image-width: 17em
   links:
-    - text: LinkedIn
+    - icon: LinkedIn
       href: https://www.linkedin.com/in/karolpaya/
       target: _blank
     - text: Github

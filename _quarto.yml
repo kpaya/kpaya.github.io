@@ -5,21 +5,29 @@ project:
 website:
   title: "Kpaya"
   navbar:
+    #logo: 
     left:
       - href: index.qmd
         text: Home
       - about.qmd
       - href: resources.qmd
         text: Resources
-
+      - posts.qmd  
+    page-footer:
+      background: light
+      left: copyright 2024, Karol Paya
+      right: This website is built with {{< fa brands github title="GitHub octocat logo" >}}
+  
 format:
   html:
-    theme: 
-     light: minty
-     dark: solar
+    theme: styles.scss
+    mainfont: Nunito
+    light: minty
+    dark: solar
     css: styles.css
     toc: true #table of context on/off
     page-layout: full
+    
 
 editor: visual
 
