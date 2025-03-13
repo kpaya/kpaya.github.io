@@ -10,9 +10,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - href: resources.qmd
-        text: Resources
-      - posts.qmd  
+      - href: posts.qmd
+        text: Blogs
     page-footer:
       background: light
       left: copyright 2024, Karol Paya

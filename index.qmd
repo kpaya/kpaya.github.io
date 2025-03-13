@@ -1,23 +1,8 @@
 ---
 #title: "Kpaya"
-image: KP_Photo.jpg
+image: KP_Photo.png
 about: 
   template: jolla
   image-shape: round
   image-width: 17em
-  links:
-    - icon: LinkedIn
-      href: https://www.linkedin.com/in/karolpaya/
-      target: _blank
-    - text: Github
-      href: https://github.com/kpaya
-    - text: Email
-      href: mailto:kpaya@ucsb.edu  
-      
 ---
-Hello!
-
-## Education
-UCSB
-
-## Professional Experience
